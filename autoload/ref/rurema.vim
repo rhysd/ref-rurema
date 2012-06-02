@@ -38,5 +38,11 @@ function! s:source.get_body(query)
 
 endfunction
 
+function! ref#rurema#define()
+    return copy(s:source)
+endfunction
+
+call ref#register_detection('ruby', 'rurema')
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
