@@ -26,21 +26,22 @@ endfunction
 
 function! s:source.get_body(query)
     if a:query != ''
-        let content = ref#system(ref#to_list(g:ref_rurema_cmd, self.make_cmd(a:query))).stdout
+        " let content = ref#system(ref#to_list(g:ref_rurema_cmd, self.make_cmd(a:query))).stdout
+        let content = ref#system(ref#to_list(g:ref_rurema_cmd, a:query)).stdout
         if content !~# '^no such method'
             return content
         endif
     endif
 
-    return split(ref#system(g:ref_rurema_cmd . self.make_cmd("")), "\n")
+    " return ref#system(g:ref_rurema_cmd . self.make_cmd(""))
 endfunction
-
 
 function! s:source.make_cmd(query)
     let cmd = a:query." --no-ask"
     if exists('g:ref_rurema_ruby')
-    let cmd .= " --rubyver=".g:ref_rurema_ruby
+        let cmd .= " --rubyver=".g:ref_rurema_ruby
     endif
+    return cmd
 endfunction
 
 
