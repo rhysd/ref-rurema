@@ -32,6 +32,7 @@ function! s:source.get_body(query)
         endif
     endif
 
+    return split(ref#system(g:ref_rurema_cmd . self.make_cmd("")), "\n")
 endfunction
 
 
